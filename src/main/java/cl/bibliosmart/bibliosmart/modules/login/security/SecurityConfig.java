@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
-                .loginPage("/login") // Usa tu HTML de login personalizado
+                .loginPage("/login")
                 .defaultSuccessUrl("/catalogo", true)
                 .permitAll()
             )

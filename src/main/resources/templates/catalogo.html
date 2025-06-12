@@ -18,7 +18,6 @@
 
   <main class="catalogo">
     <h2>Catálogo de Libros</h2>
-    <input type="text" id="buscador" class="buscador" placeholder="Buscar por título o autor...">
     <div class="libros">
       <!-- Libro 1 -->
       <div class="libro">
@@ -114,24 +113,5 @@
     <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
   </footer>
 
-  <script>
-    const buscador = document.getElementById("buscador");
-    const libros = document.querySelectorAll(".libro");
-
-    buscador.addEventListener("input", () => {
-      const texto = buscador.value.toLowerCase();
-
-      libros.forEach(libro => {
-        const titulo = libro.querySelector("h3").textContent.toLowerCase();
-        const autor = libro.querySelector("p:nth-of-type(1)").textContent.toLowerCase();
-
-        if (titulo.includes(texto) || autor.includes(texto)) {
-          libro.style.display = "block";
-        } else {
-          libro.style.display = "none";
-        }
-      });
-    });
-  </script>
 </body>
 </html>
