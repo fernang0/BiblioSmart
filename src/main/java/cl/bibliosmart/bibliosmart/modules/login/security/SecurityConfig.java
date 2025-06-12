@@ -41,7 +41,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance(); // Contraseñas en texto plano (solo en dev)
+        return NoOpPasswordEncoder.getInstance(); // Contraseñas en texto plano
     }
 
     @Bean

@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return User.withUsername(usuario.getCorreo())
                 .password(usuario.getContrasena())
-                .roles("USER") // Aquí puedes cambiar si tienes roles
+                .roles("USER")
                 .build();
     }
 }

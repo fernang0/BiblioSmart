@@ -65,3 +65,203 @@ INSERT INTO libro (titulo, autores, editorial, anio, descripcion, isbn, categori
  'Un thriller que combina arte, historia y religión, donde el profesor Robert Langdon investiga una conspiración que puede cambiar el curso de la historia. Ritmo trepidante y acertijos en cada página.', 
  '978-0-385-50420-8', 'Thriller', TRUE, NULL, NULL);
 
+
+
+
+
+
+
+INSERT INTO libro (titulo, autores, editorial, anio, descripcion, isbn, categoria, activo, motivo_baja, fecha_baja) VALUES
+-- 1
+('El amor en los tiempos del cólera', 'Gabriel García Márquez', 'Alfaguara', 1985,
+ 'Una historia de amor apasionado y duradero en la costa caribeña, que desafía el paso del tiempo.',
+ '978-84-204-5284-7', 'Ficción', TRUE, NULL, NULL),
+-- 2
+('La casa de los espíritus', 'Isabel Allende', 'Plaza & Janés', 1982,
+ 'Crónica familiar que mezcla lo mágico, lo histórico y lo político en Chile.',
+ '978-84-01-33434-7', 'Ficción', TRUE, NULL, NULL),
+-- 3
+('Pedro Páramo', 'Juan Rulfo', 'Editorial Jus', 1955,
+ 'Viaje al pueblo de Comala y encuentro con los muertos que habitan en él.',
+ '978-84-206-0934-3', 'Ficción', TRUE, NULL, NULL),
+-- 4
+('El retrato de Dorian Gray', 'Oscar Wilde', 'Lippincott', 1890,
+ 'Un joven eternamente bello, un pacto oscuro y consecuencias fatales.',
+ '978-84-376-0497-8', 'Clásicos', TRUE, NULL, NULL),
+-- 5
+('Matar a un ruiseñor', 'Harper Lee', 'J. B. Lippincott & Co.', 1960,
+ 'Historia sobre la injusticia racial asistida por la mirada infantil.',
+ '978-0-06-112008-4', 'Ficción', TRUE, NULL, NULL),
+-- 6
+('El señor de los anillos', 'J.R.R. Tolkien', 'Allen & Unwin', 1954,
+ 'Épica fantástica sobre la comunidad del anillo y la lucha contra Sauron.',
+ '978-0-261-10237-0', 'Fantasía', TRUE, NULL, NULL),
+-- 7
+('Harry Potter y la piedra filosofal', 'J.K. Rowling', 'Bloomsbury', 1997,
+ 'Un niño descubre que es mago y asiste a la escuela Hogwarts.',
+ '978-0-7475-3269-9', 'Fantasía', TRUE, NULL, NULL),
+-- 8
+('La Odisea', 'Homero', 'Anónimo (traducción)', -800,
+ 'El nostos de Ulises enfrentando monstruos, dioses y el mar para volver a Ítaca.',
+ '978-84-317-1026-7', 'Clásicos', TRUE, NULL, NULL),
+-- 9
+('La Iliada', 'Homero', 'Anónimo (traducción)', -750,
+ 'Relato de la guerra de Troya centrado en Aquiles y el conflicto con Héctor.',
+ '978-84-317-1025-0', 'Clásicos', TRUE, NULL, NULL),
+-- 10
+('El Principito', 'Antoine de Saint-Exupéry', 'Reynal & Hitchcock', 1943,
+ 'Fábula poética sobre un niño que recorre planetas. [Repetido en ejemplo]', 
+ '978-84-08-07906-4', 'Infantil', TRUE, NULL, NULL),
+-- 11
+('Viaje al centro de la Tierra', 'Jules Verne', 'Pierre-Jules Hetzel', 1864,
+ 'Aventura científica hacia lo desconocido bajo la superficie terrestre.',
+ '978-84-8164-918-9', 'Ciencia ficción', TRUE, NULL, NULL),
+-- 12
+('Veinte mil leguas de viaje submarino', 'Jules Verne', 'Pierre-Jules Hetzel', 1870,
+ 'El Capitán Nemo y su submarino Nautilus recorren los océanos.',
+ '978-84-8164-919-6', 'Ciencia ficción', TRUE, NULL, NULL),
+-- 13
+('Un mundo feliz', 'Aldous Huxley', 'Chatto & Windus', 1932,
+ 'Distopía sobre una sociedad controlada por bioingeniería y consumo.',
+ '978-0-06-085052-4', 'Ficción', TRUE, NULL, NULL),
+-- 14
+('El guardián entre el centeno', 'J.D. Salinger', 'Little, Brown and Company', 1951,
+ 'El viaje personal de Holden Caulfield por Nueva York y su crisis adolescente.',
+ '978-0-316-76948-0', 'Ficción', TRUE, NULL, NULL),
+-- 15
+('Las mil y una noches', 'Varios autores', 'editorial anónima', 1706,
+ 'Colección de cuentos fantásticos contados por Sherezade al sultán.',
+ '978-84-207-5053-2', 'Ficción', TRUE, NULL, NULL),
+-- 16
+('La divina comedia', 'Dante Alighieri', 'Johannes Numeister', 1321,
+ 'Relato épico de viaje al Infierno, Purgatorio y Paraíso.',
+ '978-84-206-8403-8', 'Clásicos', TRUE, NULL, NULL),
+-- 17
+('Madame Bovary', 'Gustave Flaubert', 'Revue de Paris', 1856,
+ 'Retrato trágico de una mujer insatisfecha con su vida provinciana.',
+ '978-84-206-8396-3', 'Clásicos', TRUE, NULL, NULL),
+-- 18
+('Moby Dick', 'Herman Melville', 'Harper & Brothers', 1851,
+ 'La obsesión del Capitán Ahab por la gran ballena blanca.',
+ '978-0-14-243724-7', 'Clásicos', TRUE, NULL, NULL),
+-- 19
+('Hamlet', 'William Shakespeare', 'N/A', 1603,
+ 'Tragedia acerca del príncipe que duda y busca vengar a su padre.',
+ '978-84-376-0498-5', 'Clásicos', TRUE, NULL, NULL),
+-- 20
+('Macbeth', 'William Shakespeare', 'N/A', 1606,
+ 'Tragedia sobre la ambición y el poder que corrompen.',
+ '978-84-376-0499-2', 'Clásicos', TRUE, NULL, NULL),
+-- 23
+('Crimen y castigo', 'Fiódor Dostoievski', 'The Russian Messenger', 1866,
+ 'Raskólnikov asesina a una usurera y enfrenta las consecuencias morales.',
+ '978-84-206-7701-6', 'Clásicos', TRUE, NULL, NULL),
+-- 24
+('Anna Karénina', 'León Tolstói', 'The Russian Messenger', 1877,
+ 'Drama romántico y social sobre una mujer atrapada entre la pasión y la moral.',
+ '978-84-206-7715-3', 'Clásicos', TRUE, NULL, NULL),
+-- 25
+('Guerra y paz', 'León Tolstói', 'The Russian Messenger', 1869,
+ 'Épica sobre la invasión napoleónica a Rusia y la aristocracia rusa.',
+ '978-84-206-7683-5', 'Clásicos', TRUE, NULL, NULL),
+-- 26
+('1984', 'George Orwell', 'Secker & Warburg', 1949,
+ 'Distopía sobre vigilancia estatal, control mental y manipulación de la verdad.',
+ '978-84-376-0495-5', 'Ficción', TRUE, NULL, NULL),
+-- 27
+('Rebelión en la granja', 'George Orwell', 'Secker & Warburg', 1945,
+ 'Fábula política sobre una granja gobernada por animales revolucionarios.',
+ '978-84-206-8210-2', 'Ficción', TRUE, NULL, NULL),
+-- 28
+('Rayuela', 'Julio Cortázar', 'Editorial Sudamericana', 1963,
+ 'Novela experimental con múltiples formas de lectura sobre la vida y el arte.',
+ '978-84-376-0496-0', 'Ficción', TRUE, NULL, NULL),
+-- 29
+('Cien años de soledad', 'Gabriel García Márquez', 'Sudamericana', 1967,
+ 'Saga de la familia Buendía en el mítico pueblo de Macondo.',
+ '978-84-376-0494-1', 'Ficción', TRUE, NULL, NULL),
+-- 30
+('Fahrenheit 451', 'Ray Bradbury', 'Ballantine Books', 1953,
+ 'Distopía donde los libros están prohibidos y se queman para eliminar el pensamiento crítico.',
+ '978-84-233-5842-3', 'Ciencia ficción', TRUE, NULL, NULL),
+-- 31
+('El nombre de la rosa', 'Umberto Eco', 'Bompiani', 1980,
+ 'Misterio medieval en una abadía benedictina con tintes filosóficos.',
+ '978-84-663-0223-6', 'Ficción', TRUE, NULL, NULL),
+-- 32
+('Ensayo sobre la ceguera', 'José Saramago', 'Editorial Caminho', 1995,
+ 'Una epidemia de ceguera blanca azota una ciudad, revelando la condición humana.',
+ '978-84-8310-101-2', 'Ficción', TRUE, NULL, NULL),
+-- 33
+('La tregua', 'Mario Benedetti', 'Editorial Arca', 1960,
+ 'Historia de un viudo rutinario que encuentra un último amor.',
+ '978-84-8383-008-1', 'Ficción', TRUE, NULL, NULL),
+-- 34
+('Sobre héroes y tumbas', 'Ernesto Sabato', 'Losada', 1961,
+ 'Exploración de la locura, la identidad y la historia argentina.',
+ '978-84-206-7706-1', 'Ficción', TRUE, NULL, NULL),
+-- 35
+('El túnel', 'Ernesto Sabato', 'Sudamericana', 1948,
+ 'Confesión de un pintor sobre el asesinato de la mujer que amaba.',
+ '978-84-206-7707-8', 'Ficción', TRUE, NULL, NULL),
+-- 36
+('Don Quijote de la Mancha', 'Miguel de Cervantes', 'Francisco de Robles', 1605,
+ 'Caballero que confunde la realidad con su imaginación idealista.',
+ '978-84-206-3451-4', 'Clásicos', TRUE, NULL, NULL),
+-- 37
+('El Aleph', 'Jorge Luis Borges', 'Editorial Losada', 1949,
+ 'Colección de cuentos filosóficos, metafísicos y sorprendentes.',
+ '978-84-206-2624-3', 'Ficción', TRUE, NULL, NULL),
+-- 38
+('Ficciones', 'Jorge Luis Borges', 'Sur', 1944,
+ 'Obra clave con relatos que exploran los laberintos del tiempo, el infinito y la literatura.',
+ '978-84-206-2625-0', 'Ficción', TRUE, NULL, NULL),
+-- 39
+('El extranjero', 'Albert Camus', 'Gallimard', 1942,
+ 'Un hombre indiferente a la vida y la muerte enfrenta el juicio moral de la sociedad.',
+ '978-84-206-4544-2', 'Ficción', TRUE, NULL, NULL),
+-- 40
+('La peste', 'Albert Camus', 'Gallimard', 1947,
+ 'Crónica de una epidemia en Orán que revela lo mejor y peor de los humanos.',
+ '978-84-206-7686-6', 'Ficción', TRUE, NULL, NULL),
+-- 41
+('Los miserables', 'Victor Hugo', 'A. Lacroix, Verboeckhoven & Cie.', 1862,
+ 'Redención, injusticia social y revolución en la Francia del siglo XIX.',
+ '978-84-206-7670-5', 'Clásicos', TRUE, NULL, NULL),
+-- 42
+('Notre-Dame de París', 'Victor Hugo', 'Gosselin', 1831,
+ 'Historia trágica del jorobado Quasimodo y la gitana Esmeralda.',
+ '978-84-206-7680-4', 'Clásicos', TRUE, NULL, NULL),
+-- 43
+('Los hermanos Karamázov', 'Fiódor Dostoievski', 'Russki Vestnik', 1880,
+ 'Relato filosófico sobre fe, duda, razón, moral y crimen.',
+ '978-84-206-7681-1', 'Clásicos', TRUE, NULL, NULL),
+-- 44
+('El idiota', 'Fiódor Dostoievski', 'Russki Vestnik', 1869,
+ 'El príncipe Myshkin, símbolo de la bondad, en un mundo corrupto.',
+ '978-84-206-7682-8', 'Clásicos', TRUE, NULL, NULL),
+-- 45
+('Ulises', 'James Joyce', 'Sylvia Beach', 1922,
+ 'Un día en la vida de Leopold Bloom en Dublín, narrado con complejidad innovadora.',
+ '978-84-206-7687-3', 'Clásicos', TRUE, NULL, NULL),
+-- 46
+('Dublineses', 'James Joyce', 'Grant Richards Ltd.', 1914,
+ 'Cuentos breves sobre la parálisis emocional y social en Dublín.',
+ '978-84-206-7688-0', 'Clásicos', TRUE, NULL, NULL),
+-- 47
+('Lolita', 'Vladimir Nabokov', 'Olympia Press', 1955,
+ 'Una controvertida historia de obsesión narrada por Humbert Humbert.',
+ '978-84-206-7690-3', 'Ficción', TRUE, NULL, NULL),
+-- 48
+('Trópico de Cáncer', 'Henry Miller', 'Obelisk Press', 1934,
+ 'Autobiografía ficcional sobre la vida bohemia en París.',
+ '978-84-206-7691-0', 'Ficción', TRUE, NULL, NULL),
+-- 49
+('La insoportable levedad del ser', 'Milan Kundera', 'Gallimard', 1984,
+ 'Relato filosófico sobre el amor y la identidad en el contexto del totalitarismo.',
+ '978-84-206-7692-7', 'Ficción', TRUE, NULL, NULL),
+-- 50
+('El lobo estepario', 'Hermann Hesse', 'S. Fischer Verlag', 1927,
+ 'Novela introspectiva sobre la dualidad humana y la búsqueda espiritual.',
+ '978-84-206-7693-4', 'Ficción', TRUE, NULL, NULL);
+
