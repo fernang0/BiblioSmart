@@ -19,10 +19,10 @@
   <main class="catalogo">
     <h2>Catálogo de Libros</h2>
 
-    <!-- Formulario para filtrar por categoría -->
+    <!-- Formulario para búsqueda general -->
     <form method="get" action="/catalogo">
-      <label for="categoria">Filtrar por categoría:</label>
-      <input type="text" id="categoria" name="categoria" th:value="${categoria}" />
+      <label for="q">Buscar por título, autor o ISBN:</label>
+      <input type="text" id="q" name="q" th:value="${q}" placeholder="Ejemplo: Cien Años, García, 9781234567890" />
       <button type="submit">Buscar</button>
     </form>
 
@@ -43,15 +43,15 @@
     <div class="paginacion">
       <ul>
         <li th:if="${pagina > 1}">
-          <a th:href="@{/catalogo(pagina=${pagina - 1}, categoria=${categoria})}">Anterior</a>
+          <a th:href="@{/catalogo(pagina=${pagina - 1}, q=${q})}">Anterior</a>
         </li>
         <li th:each="i : ${#numbers.sequence(1, totalPaginas)}"
             th:classappend="${i == pagina} ? 'activo'">
-          <a th:href="@{/catalogo(pagina=${i}, categoria=${categoria})}"
+          <a th:href="@{/catalogo(pagina=${i}, q=${q})}"
              th:text="${i}">1</a>
         </li>
         <li th:if="${pagina < totalPaginas}">
-          <a th:href="@{/catalogo(pagina=${pagina + 1}, categoria=${categoria})}">Siguiente</a>
+          <a th:href="@{/catalogo(pagina=${pagina + 1}, q=${q})}">Siguiente</a>
         </li>
       </ul>
     </div>

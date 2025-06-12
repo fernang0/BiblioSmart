@@ -1,14 +1,14 @@
 package cl.bibliosmart.bibliosmart.modules.catalogo.controller;
 
+import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
+import cl.bibliosmart.bibliosmart.modules.catalogo.service.LibroService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
-import cl.bibliosmart.bibliosmart.modules.catalogo.service.LibroService;
 
 @Controller
 public class CatalogoController {
@@ -17,18 +17,21 @@ public class CatalogoController {
     private LibroService libroService;
 
     @GetMapping("/catalogo")
-    public String mostrarCatalogo(
-            @RequestParam(value = "pagina", defaultValue = "1") int pagina,
+    public String catalogo(
+            @RequestParam(value = "q", required = false) String q,
             @RequestParam(value = "categoria", required = false) String categoria,
+            @RequestParam(value = "pagina", required = false, defaultValue = "1") int pagina,
             Model model) {
 
-        Page<Libro> librosPage = libroService.obtenerLibros(pagina, categoria);
+        Page<Libro> pageLibros = libroService.listarLibros(q, categoria, pagina);
 
-        model.addAttribute("libros", librosPage.getContent());
+        model.addAttribute("libros", pageLibros.getContent());
         model.addAttribute("pagina", pagina);
-        model.addAttribute("totalPaginas", librosPage.getTotalPages());
-        model.addAttribute("categoria", categoria != null ? categoria : "");
+        model.addAttribute("totalPaginas", pageLibros.getTotalPages());
+        model.addAttribute("q", q == null ? "" : q);
+        model.addAttribute("categoria", categoria == null ? "" : categoria);
 
-        return "catalogo";  // nombre de la plantilla HTML (catalogo.html)
+        return "catalogo";
     }
+
 }

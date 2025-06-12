@@ -6,6 +6,12 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   background-color: #f4f4f4;
   color: #333;
@@ -47,17 +53,27 @@ footer {
   color: white;
   text-align: center;
   padding: 1em;
-  margin-top: 3em;
+  flex-shrink: 0;
+  margin-top: 0;
 }
 
 /* Login (index.html) */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
 .login-container {
   max-width: 400px;
-  margin: 5em auto;
+  width: 100%;
   padding: 2em;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: 0;
 }
 
 .login-container h2 {
@@ -104,14 +120,52 @@ footer {
   color: #2c3e50;
 }
 
-.buscador {
-  width: 100%;
-  max-width: 500px;
-  padding: 0.7em;
-  margin: 0 auto 2em auto;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Formulario de búsqueda */
+.catalogo form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8em;
+  margin-bottom: 2em;
+  flex-wrap: wrap;
+}
+
+.catalogo form label {
+  font-weight: bold;
+  color: #2c3e50;
+  min-width: 180px;
+}
+
+.catalogo form input[type="text"] {
+  flex: 1 1 400px;
+  max-width: 600px;
+  padding: 0.8em 1em;
+  font-size: 1.1rem;
+  border: 2px solid #2c3e50;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.catalogo form input[type="text"]:focus {
+  border-color: #1abc9c;
+}
+
+.catalogo form button {
+  padding: 0.8em 1.5em;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #2c3e50;
+  border: 2px solid #2c3e50;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.catalogo form button:hover {
+  background-color: #1abc9c;
+  border-color: #1abc9c;
 }
 
 /* Grid de libros */
@@ -153,33 +207,10 @@ footer {
   margin: 0.2em 0;
   color: #555;
 }
-.error-message, .success-message {
+
+/* Mensajes */
+.error-message,
+.success-message {
   margin-bottom: 1em;
   display: block;
-}
-/* Para que el body y html ocupen toda la pantalla y usen flex vertical */
-html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* El main debe ocupar todo el espacio disponible entre header y footer */
-main {
-  flex: 1;
-  display: flex;
-  justify-content: center; /* centra horizontal */
-  align-items: center;     /* centra vertical */
-  padding: 1em;            /* un poco de espacio */
-}
-
-/* Ajustamos login-container para que no tenga margen top (ya que main lo centra) */
-.login-container {
-  margin: 0; /* quitar margin-top */
-}
-
-/* El footer siempre al fondo */
-footer {
-  margin-top: 0; /* eliminar margin-top para que no se aleje */
-  flex-shrink: 0;
 }

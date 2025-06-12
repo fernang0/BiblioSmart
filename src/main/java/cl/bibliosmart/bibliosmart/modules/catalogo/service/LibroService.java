@@ -1,12 +1,11 @@
 package cl.bibliosmart.bibliosmart.modules.catalogo.service;
 
+import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
+import cl.bibliosmart.bibliosmart.modules.catalogo.repository.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
-import cl.bibliosmart.bibliosmart.modules.catalogo.repository.LibroRepository;
 
 @Service
 public class LibroService {
@@ -16,12 +15,21 @@ public class LibroService {
 
     private static final int PAGE_SIZE = 40;
 
-    public Page<Libro> obtenerLibros(int pagina, String categoria) {
+    public Page<Libro> listarLibros(String q, String categoria, int pagina) {
         PageRequest pageRequest = PageRequest.of(pagina - 1, PAGE_SIZE);
-        if (categoria == null || categoria.isBlank()) {
-            return libroRepository.findByActivoTrue(pageRequest);
+
+        boolean tieneBusqueda = q != null && !q.trim().isEmpty();
+        boolean tieneCategoria = categoria != null && !categoria.trim().isEmpty();
+
+        if (!tieneBusqueda && !tieneCategoria) {
+            return libroRepository.findAllActivos(pageRequest);
+        } else if (tieneBusqueda && !tieneCategoria) {
+            return libroRepository.buscarPorQ(q.trim(), pageRequest);
+        } else if (!tieneBusqueda && tieneCategoria) {
+            return libroRepository.findByCategoriaActiva(categoria.trim(), pageRequest);
         } else {
-            return libroRepository.findByActivoTrueAndCategoriaContainingIgnoreCase(categoria.trim(), pageRequest);
+            return libroRepository.buscarPorQYCategoria(q.trim(), categoria.trim(), pageRequest);
         }
     }
+
 }
