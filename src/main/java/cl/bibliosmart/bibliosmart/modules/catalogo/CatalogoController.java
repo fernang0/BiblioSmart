@@ -1,4 +1,4 @@
-package cl.bibliosmart.bibliosmart.controller;
+package cl.bibliosmart.bibliosmart.modules.catalogo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

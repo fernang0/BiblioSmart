@@ -1,4 +1,4 @@
-package cl.bibliosmart.bibliosmart.controller;
+package cl.bibliosmart.bibliosmart.modules.login.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package cl.bibliosmart.bibliosmart.security;
+package cl.bibliosmart.bibliosmart.modules.login.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package cl.bibliosmart.bibliosmart.model;
+package cl.bibliosmart.bibliosmart.modules.login.model;
 
 public enum TipoUsuario {
     ALUMNO,

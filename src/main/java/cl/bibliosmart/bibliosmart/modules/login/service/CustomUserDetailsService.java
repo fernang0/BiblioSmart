@@ -1,10 +1,11 @@
-package cl.bibliosmart.bibliosmart.service;
+package cl.bibliosmart.bibliosmart.modules.login.service;
 
-import cl.bibliosmart.bibliosmart.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
+
+import cl.bibliosmart.bibliosmart.modules.login.model.Usuario;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
