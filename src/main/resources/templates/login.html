@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biblioteca - Iniciar Sesión</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+  <header>
+    <h1>Biblioteca</h1>
+  </header>
+
+  <main>
+    <section class="login-container">
+      <h2>Iniciar Sesión</h2>
+
+      <!-- Mensaje de error -->
+      <p th:if="${error}" th:text="${error}" class="error-message" style="color: red;"></p>
+
+      <!-- Mensaje de éxito -->
+      <p th:if="${success}" th:text="${success}" class="success-message" style="color: green;"></p>
+
+      <form th:action="@{/login}" method="POST">
+        <label for="email">Correo electronico:</label>
+        <input type="text" id="username" name="username" required th:value="${email}"/>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Ingresar</button>
+      </form>
+
+      <p class="register-link">¿No tienes cuenta? <a th:href="@{/registro}">Regístrate</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
+  </footer>
+</body>
+</html>

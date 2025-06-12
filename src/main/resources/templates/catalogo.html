@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Libros - Biblioteca</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Biblioteca</h1>
+    <nav>
+      <a href="/catalogo">Catálogo</a>
+      <a href="/contacto">Contacto</a>
+      <a href="/logout">Cerrar Sesión</a>
+    </nav>
+  </header>
+
+  <main class="catalogo">
+    <h2>Catálogo de Libros</h2>
+    <input type="text" id="buscador" class="buscador" placeholder="Buscar por título o autor...">
+    <div class="libros">
+      <!-- Libro 1 -->
+      <div class="libro">
+        <img th:src="@{/covers/0008312161-L.jpg}" alt="Cien Años de Soledad" 
+             onerror="this.onerror=null; this.src='/covers/default.png';">
+        <div class="info">
+          <h3>Cien Años de Soledad</h3>
+          <p>Gabriel García Márquez</p>
+          <p><small>1967</small></p>
+        </div>
+      </div>
+
+      <!-- Libro 2 -->
+      <div class="libro">
+        <img th:src="@{/covers/7222246-L.jpg}" alt="1984" 
+             onerror="this.onerror=null; this.src='/covers/default.png';">
+        <div class="info">
+          <h3>1984</h3>
+          <p>George Orwell</p>
+          <p><small>1949</small></p>
+        </div>
+      </div>
+
+      <!-- Libro 3 -->
+      <div class="libro">
+        <img th:src="@{/covers/0008780829-L.jpg}" alt="Rayuela" 
+             onerror="this.onerror=null; this.src='/covers/default.png';">
+        <div class="info">
+          <h3>Rayuela</h3>
+          <p>Julio Cortázar</p>
+          <p><small>1963</small></p>
+        </div>
+      </div>
+
+      <!-- Libro 4 -->
+      <div class="libro">
+        <img th:src="@{/covers/0009874157-L.jpg}" alt="Don Quijote de la Mancha" 
+             onerror="this.onerror=null; this.src='/covers/default.png';">
+        <div class="info">
+          <h3>Don Quijote de la Mancha</h3>
+          <p>Miguel de Cervantes</p>
+          <p><small>1605</small></p>
+        </div>
+      </div>
+
+      <!-- Libro 5 -->
+      <div class="libro">
+        <img th:src="@{/covers/0008281996-L.jpg}" alt="El Principito" 
+             onerror="this.onerror=null; this.src='/covers/default.png';">
+        <div class="info">
+          <h3>El Principito</h3>
+          <p>Antoine de Saint-Exupéry</p>
+          <p><small>1943</small></p>
+        </div>
+      </div>
+
+      <!-- Libro 6 -->
+      <div class="libro">
+        <img th:src="@{/covers/0008319255-L.jpg}" alt="Crimen y Castigo" 
+             onerror="this.onerror=null; this.src='/covers/default.png';">
+        <div class="info">
+          <h3>Crimen y Castigo</h3>
+          <p>Fiódor Dostoievski</p>
+          <p><small>1866</small></p>
+        </div>
+      </div>
+
+      <!-- Libro 7 -->
+      <div class="libro">
+        <img th:src="@{/covers/0010510292-L.jpg}" alt="Orgullo y Prejuicio" 
+             onerror="this.onerror=null; this.src='/covers/default.png';">
+        <div class="info">
+          <h3>Orgullo y Prejuicio</h3>
+          <p>Jane Austen</p>
+          <p><small>1813</small></p>
+        </div>
+      </div>
+
+      <!-- Libro 8 -->
+      <div class="libro">
+        <img th:src="@{/covers/0010510152-L.jpg}" alt="Fahrenheit 451" 
+             onerror="this.onerror=null; this.src='/covers/default.png';">
+        <div class="info">
+          <h3>Fahrenheit 451</h3>
+          <p>Ray Bradbury</p>
+          <p><small>1953</small></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
+  </footer>
+
+  <script>
+    const buscador = document.getElementById("buscador");
+    const libros = document.querySelectorAll(".libro");
+
+    buscador.addEventListener("input", () => {
+      const texto = buscador.value.toLowerCase();
+
+      libros.forEach(libro => {
+        const titulo = libro.querySelector("h3").textContent.toLowerCase();
+        const autor = libro.querySelector("p:nth-of-type(1)").textContent.toLowerCase();
+
+        if (titulo.includes(texto) || autor.includes(texto)) {
+          libro.style.display = "block";
+        } else {
+          libro.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
