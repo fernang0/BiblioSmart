@@ -4,6 +4,8 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,23 +32,32 @@ public class Usuario {
     @Column(name = "rut")
     private String rut;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_completo")
+    private String nombreCompleto;
 
     @Column(name = "correo")
     private String correo;
 
     @Column(name = "contrasena")
     private String contrasena;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_usuario")
+    private TipoUsuario tipoUsuario;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "rol")
-    private String rol;
+    private Rol rol;
 
-    @Column(name= "estado")
-    private String estado;
+
+    @Column(name= "estado_cuenta")
+    private String estadoCuenta;
     
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name= "fecha_registro")
     private Date fechaRegistro;
     
+    @Column(name = "deuda")
+    private Integer deuda;
+
 }
