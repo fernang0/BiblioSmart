@@ -18,95 +18,44 @@
 
   <main class="catalogo">
     <h2>Catálogo de Libros</h2>
+
+    <!-- Formulario para filtrar por categoría -->
+    <form method="get" action="/catalogo">
+      <label for="categoria">Filtrar por categoría:</label>
+      <input type="text" id="categoria" name="categoria" th:value="${categoria}" />
+      <button type="submit">Buscar</button>
+    </form>
+
     <div class="libros">
-      <!-- Libro 1 -->
-      <div class="libro">
-        <img th:src="@{/covers/0008312161-L.jpg}" alt="Cien Años de Soledad" 
-             onerror="this.onerror=null; this.src='/covers/default.png';">
+      <div class="libro" th:each="libro : ${libros}">
+        <img th:src="@{'/covers/' + ${libro.isbn} + '-L.jpg'}" 
+             th:alt="${libro.titulo}"
+             onerror="this.onerror=null; this.src='/covers/default.png';" />
         <div class="info">
-          <h3>Cien Años de Soledad</h3>
-          <p>Gabriel García Márquez</p>
-          <p><small>1967</small></p>
-        </div>
-      </div>
-
-      <!-- Libro 2 -->
-      <div class="libro">
-        <img th:src="@{/covers/7222246-L.jpg}" alt="1984" 
-             onerror="this.onerror=null; this.src='/covers/default.png';">
-        <div class="info">
-          <h3>1984</h3>
-          <p>George Orwell</p>
-          <p><small>1949</small></p>
-        </div>
-      </div>
-
-      <!-- Libro 3 -->
-      <div class="libro">
-        <img th:src="@{/covers/0008780829-L.jpg}" alt="Rayuela" 
-             onerror="this.onerror=null; this.src='/covers/default.png';">
-        <div class="info">
-          <h3>Rayuela</h3>
-          <p>Julio Cortázar</p>
-          <p><small>1963</small></p>
-        </div>
-      </div>
-
-      <!-- Libro 4 -->
-      <div class="libro">
-        <img th:src="@{/covers/0009874157-L.jpg}" alt="Don Quijote de la Mancha" 
-             onerror="this.onerror=null; this.src='/covers/default.png';">
-        <div class="info">
-          <h3>Don Quijote de la Mancha</h3>
-          <p>Miguel de Cervantes</p>
-          <p><small>1605</small></p>
-        </div>
-      </div>
-
-      <!-- Libro 5 -->
-      <div class="libro">
-        <img th:src="@{/covers/0008281996-L.jpg}" alt="El Principito" 
-             onerror="this.onerror=null; this.src='/covers/default.png';">
-        <div class="info">
-          <h3>El Principito</h3>
-          <p>Antoine de Saint-Exupéry</p>
-          <p><small>1943</small></p>
-        </div>
-      </div>
-
-      <!-- Libro 6 -->
-      <div class="libro">
-        <img th:src="@{/covers/0008319255-L.jpg}" alt="Crimen y Castigo" 
-             onerror="this.onerror=null; this.src='/covers/default.png';">
-        <div class="info">
-          <h3>Crimen y Castigo</h3>
-          <p>Fiódor Dostoievski</p>
-          <p><small>1866</small></p>
-        </div>
-      </div>
-
-      <!-- Libro 7 -->
-      <div class="libro">
-        <img th:src="@{/covers/0010510292-L.jpg}" alt="Orgullo y Prejuicio" 
-             onerror="this.onerror=null; this.src='/covers/default.png';">
-        <div class="info">
-          <h3>Orgullo y Prejuicio</h3>
-          <p>Jane Austen</p>
-          <p><small>1813</small></p>
-        </div>
-      </div>
-
-      <!-- Libro 8 -->
-      <div class="libro">
-        <img th:src="@{/covers/0010510152-L.jpg}" alt="Fahrenheit 451" 
-             onerror="this.onerror=null; this.src='/covers/default.png';">
-        <div class="info">
-          <h3>Fahrenheit 451</h3>
-          <p>Ray Bradbury</p>
-          <p><small>1953</small></p>
+          <h3 th:text="${libro.titulo}">Título del Libro</h3>
+          <p th:text="${libro.autores}">Autor</p>
+          <p><small th:text="${libro.anio}">Año</small></p>
         </div>
       </div>
     </div>
+
+    <!-- Paginación -->
+    <div class="paginacion">
+      <ul>
+        <li th:if="${pagina > 1}">
+          <a th:href="@{/catalogo(pagina=${pagina - 1}, categoria=${categoria})}">Anterior</a>
+        </li>
+        <li th:each="i : ${#numbers.sequence(1, totalPaginas)}"
+            th:classappend="${i == pagina} ? 'activo'">
+          <a th:href="@{/catalogo(pagina=${i}, categoria=${categoria})}"
+             th:text="${i}">1</a>
+        </li>
+        <li th:if="${pagina < totalPaginas}">
+          <a th:href="@{/catalogo(pagina=${pagina + 1}, categoria=${categoria})}">Siguiente</a>
+        </li>
+      </ul>
+    </div>
+
   </main>
 
   <footer>
