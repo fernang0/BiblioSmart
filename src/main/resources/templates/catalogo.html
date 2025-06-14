@@ -10,6 +10,20 @@
   <header>
     <h1>Biblioteca</h1>
     <nav>
+      <div class="dropdown">
+        <a href="#">Categoría</a>
+        <div class="dropdown-content">
+          <a href="/catalogo?categoria=Ficción">Ficción</a>
+          <a href="/catalogo?categoria=Clásicos">Clásicos</a>
+          <a href="/catalogo?categoria=Infantil">Infantil</a>
+          <a href="/catalogo?categoria=Romántico">Romántico</a>
+          <a href="/catalogo?categoria=Misterio">Misterio</a>
+          <a href="/catalogo?categoria=Thriller">Thriller</a>
+          <a href="/catalogo?categoria=Fantasía">Fantasía</a>
+          <a href="/catalogo?categoria=Ciencia ficción">Ciencia ficción</a>
+
+        </div>
+      </div>
       <a href="/catalogo">Catálogo</a>
       <a href="/contacto">Contacto</a>
       <a href="/logout">Cerrar Sesión</a>
@@ -19,7 +33,6 @@
   <main class="catalogo">
     <h2>Catálogo de Libros</h2>
 
-    <!-- Formulario para búsqueda general -->
     <form method="get" action="/catalogo">
       <label for="q">Buscar por título, autor o ISBN:</label>
       <input type="text" id="q" name="q" th:value="${q}" placeholder="Ejemplo: Cien Años, García, 9781234567890" />
@@ -28,7 +41,7 @@
 
     <div class="libros">
       <div class="libro" th:each="libro : ${libros}">
-        <img th:src="@{'/covers/' + ${libro.isbn} + '-L.jpg'}" 
+        <img th:src="@{'/covers/' + ${libro.isbn} + '-L.jpg'}"
              th:alt="${libro.titulo}"
              onerror="this.onerror=null; this.src='/covers/default.png';" />
         <div class="info">
@@ -39,7 +52,6 @@
       </div>
     </div>
 
-    <!-- Paginación -->
     <div class="paginacion">
       <ul>
         <li th:if="${pagina > 1}">
@@ -55,12 +67,29 @@
         </li>
       </ul>
     </div>
-
   </main>
 
   <footer>
     <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
   </footer>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const linkCategoria = document.querySelector('.dropdown > a');
+    const menu = document.querySelector('.dropdown-content');
+
+    linkCategoria.addEventListener('click', e => {
+      e.preventDefault();
+      menu.classList.toggle('show');
+    });
+
+    // Opcional: clic fuera para cerrar el menú
+    document.addEventListener('click', e => {
+      if (!linkCategoria.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.remove('show');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
