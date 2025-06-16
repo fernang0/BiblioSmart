@@ -41,16 +41,19 @@
 
     <div class="libros">
       <div class="libro" th:each="libro : ${libros}">
-        <img th:src="@{'/covers/' + ${libro.isbn} + '-L.jpg'}"
-             th:alt="${libro.titulo}"
-             onerror="this.onerror=null; this.src='/covers/default.png';" />
-        <div class="info">
-          <h3 th:text="${libro.titulo}">Título del Libro</h3>
-          <p th:text="${libro.autores}">Autor</p>
-          <p><small th:text="${libro.anio}">Año</small></p>
-        </div>
+        <a th:href="@{/catalogo/libro(id=${libro.id})}" style="text-decoration: none; color: inherit;">
+          <img th:src="@{'/covers/' + ${libro.isbn} + '-L.jpg'}"
+              th:alt="${libro.titulo}"
+              onerror="this.onerror=null; this.src='/covers/default.png';" />
+          <div class="info">
+            <h3 th:text="${libro.titulo}">Título del Libro</h3>
+            <p th:text="${libro.autores}">Autor</p>
+            <p><small th:text="${libro.anio}">Año</small></p>
+          </div>
+        </a>
       </div>
     </div>
+
 
     <div class="paginacion">
       <ul>

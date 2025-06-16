@@ -8,15 +8,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/catalogo")
 public class CatalogoController {
 
     @Autowired
     private LibroService libroService;
 
-    @GetMapping("/catalogo")
+    @GetMapping()
     public String catalogo(
             @RequestParam(value = "q", required = false) String q,
             @RequestParam(value = "categoria", required = false) String categoria,
@@ -33,5 +35,17 @@ public class CatalogoController {
 
         return "catalogo";
     }
+    @GetMapping("/libro")
+    public String verLibro(@RequestParam(value = "id") Long id, Model model) {
+        Libro libro = libroService.buscarPorId(id);
+        if (libro == null) {
+            return "redirect:/catalogo"; // Redirige si no existe
+        }
+
+        model.addAttribute("libro", libro);
+        return "libro"; // nombre del archivo HTML sin extensión
+    }
+
+    
 
 }

@@ -31,5 +31,8 @@ public class LibroService {
             return libroRepository.buscarPorQYCategoria(q.trim(), categoria.trim(), pageRequest);
         }
     }
+    public Libro buscarPorId(Long id){
+        return libroRepository.getById(id);
+    }
 
 }
