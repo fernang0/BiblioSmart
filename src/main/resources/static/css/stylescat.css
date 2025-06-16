@@ -205,7 +205,7 @@ footer {
 
 .dropdown-content {
   display: none; /* oculto por defecto */
-  position: static;
+  position: absolute;
   top: 125px; /* ajusta según la altura del header */
   left: 0;
   width: 100vw;
