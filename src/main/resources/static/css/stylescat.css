@@ -66,6 +66,7 @@ main.catalogo h2 {
   margin-bottom: 20px;
   text-align: center;
   color: var(--color-primario);
+  flex: 1;
 }
 
 /* Formulario de búsqueda */

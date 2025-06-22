@@ -15,7 +15,9 @@
       </div>
       <a href="/catalogo">Catálogo</a>
       <a href="/contacto">Contacto</a>
-      <a href="/logout">Cerrar Sesión</a>
+      <form id="logoutForm" th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" style="all: unset; cursor: pointer;">Cerrar Sesión</button>
+      </form>
     </nav>
     <div class="dropdown-content">
       <a href="/catalogo?categoria=Ficción">Ficción</a>
@@ -39,6 +41,7 @@
         <p><strong>Autor(es):</strong> <span th:text="${libro.autores}">Autor</span></p>
         <p><strong>Año:</strong> <span th:text="${libro.anio}">Año</span></p>
         <p><strong>Editorial:</strong> <span th:text="${libro.editorial}">Editorial</span></p>
+        <p><strong>ISBN:</strong> <span th:text="${libro.isbn}">Editorial</span></p>
         <p><strong>Categoría:</strong> <span th:text="${libro.categoria}">Categoría</span></p>
         <p><strong>Descripción:</strong></p>
         <p th:text="${libro.descripcion}">Descripción del libro</p>

@@ -2,6 +2,9 @@ package cl.bibliosmart.bibliosmart.modules.catalogo.service;
 
 import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
 import cl.bibliosmart.bibliosmart.modules.catalogo.repository.LibroRepository;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

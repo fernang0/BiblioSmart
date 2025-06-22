@@ -15,7 +15,10 @@
       </div>
       <a href="/catalogo">Catálogo</a>
       <a href="/contacto">Contacto</a>
-      <a href="/logout">Cerrar Sesión</a>
+      <form id="logoutForm" th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" style="all: unset; cursor: pointer;">Cerrar Sesión</button>
+      </form>
+
     </nav>
         <div class="dropdown-content">
           <a href="/catalogo?categoria=Ficción">Ficción</a>
