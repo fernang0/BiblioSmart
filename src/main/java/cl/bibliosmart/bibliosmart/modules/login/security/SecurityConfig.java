@@ -27,6 +27,9 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/css/**", "/static/**").permitAll()
+                .requestMatchers("/bibliotecario/**").hasAnyRole("BIBLIOTECARIO", "ADMINISTRADOR") // Solo estos roles
+                .requestMatchers("/admin/**").hasRole("ADMINISTRADOR") // Para rutas de administrador
+                .requestMatchers("/catalogo/**").hasAnyRole("LECTOR", "BIBLIOTECARIO", "ADMINISTRADOR") // Para todos los roles
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

@@ -40,4 +40,9 @@ public class Ejemplar {
     @ManyToOne
     @JoinColumn(name = "libro_id")
     private Libro libro;
+    
+    public Boolean isDisponible() {
+        return this.getEstado() == EstadoEjemplar.DISPONIBLE;
+    }
+
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel del Bibliotecario - Biblioteca</title>
+  <link rel="stylesheet" th:href="@{/css/prestamo-panel.css}" />
+</head>
+<body>
+  <header>
+    <h1>Biblioteca - Panel del Bibliotecario</h1>
+    <nav>
+      <a href="/catalogo">Catálogo</a>
+      <form id="logoutForm" th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" style="all: unset; cursor: pointer;">Cerrar Sesión</button>
+      </form>
+    </nav>
+  </header>
+
+  <main class="catalogo">
+    <h2>Gestión Bibliotecaria</h2>
+    
+    <div class="opciones-bibliotecario">
+      <ul>
+        <li><a href="/bibliotecario/nuevo-prestamo">📚 Registrar nuevo préstamo</a></li>
+        <li><a href="/bibliotecario/devoluciones">📥 Registrar devolución de libro</a></li>
+        <li><a href="/bibliotecario/multas">💰 Registrar pago de multa</a></li>
+        <li><a href="/bibliotecario/libros">✏️ Editar información de libros y ejemplares</a></li>
+      </ul>
+    </div>
+
+    <section style="margin-top: 2rem;">
+      <p>Bienvenido al panel de gestión. Desde aquí puedes administrar los préstamos, devoluciones, pagos de multa y mantener actualizado el catálogo.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
+  </footer>
+
+</body>
+</html>

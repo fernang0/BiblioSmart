@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrar Nuevo Préstamo</title>
+  <link rel="stylesheet" th:href="@{/css/prestamo-panel.css}" />
+</head>
+<body>
+  <header>
+    <h1>Registrar Préstamo</h1>
+    <nav>
+      <a href="/bibliotecario/panel">Volver al Panel</a>
+      <form th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" style="all: unset; cursor: pointer;">Cerrar Sesión</button>
+      </form>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="margin-bottom: 10px;">Nuevo Préstamo</h2>
+
+    <form th:action="@{/bibliotecario/prestamos/guardar}" method="post" class="formulario-linea">
+      <label for="codigoEjemplar">Ejemplar:</label>
+      <input type="text" id="codigoEjemplar" name="ejemplarId" required />
+
+      <label for="rutUsuario">RUT:</label>
+      <input type="text" id="rutUsuario" name="rutUsuario" required placeholder="12345678-9" />
+
+      <label for="politicaId">Política:</label>
+      <select id="politicaId" name="politicaPrestamoId" required>
+        <option th:each="politica : ${politicas}" 
+                th:value="${politica.id}"
+                th:text="'Máx: ' + ${politica.diasMaximos} + ', Tol: ' + ${politica.diasTolerancia}">
+        </option>
+      </select>
+
+      <button type="submit">Registrar</button>
+    </form>
+
+    <div th:if="${msgExito}" style="color: green; font-size: 13px; margin-top: 8px;">
+      <p th:text="${msgExito}" style="margin: 0;"></p>
+    </div>
+    <div th:if="${msgError}" style="color: red; font-size: 13px; margin-top: 8px;">
+      <p th:text="${msgError}" style="margin: 0;"></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
+  </footer>
+</body>
+</html>

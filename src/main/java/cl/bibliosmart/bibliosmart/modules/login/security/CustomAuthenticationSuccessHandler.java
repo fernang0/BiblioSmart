@@ -29,7 +29,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 response.sendRedirect("/admin");
                 return;
             } else if (role.contains("BIBLIOTECARIO")) {
-                response.sendRedirect("/bibliotecario");
+                response.sendRedirect("/bibliotecario/panel");
                 return;
             } else if (role.contains("LECTOR")) {
                 response.sendRedirect("/catalogo");

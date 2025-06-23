@@ -1,0 +1,143 @@
+/* Estructura principal */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #004d7a;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a, nav button {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+nav a:hover, nav button:hover {
+  text-decoration: underline;
+}
+
+/* Main */
+main {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+main h2 {
+  margin-bottom: 20px;
+  color: #004d7a;
+}
+
+/* Formulario préstamo */
+.formulario-linea {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.formulario-linea label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.formulario-linea input,
+.formulario-linea select {
+  padding: 5px 8px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 140px;
+}
+
+.formulario-linea button {
+  padding: 6px 12px;
+  background-color: #007BFF;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.formulario-linea button:hover {
+  background-color: #0056b3;
+}
+
+/* Mensajes */
+.mensaje-exito {
+  color: green;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.mensaje-error {
+  color: red;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* Panel opciones bibliotecario */
+.opciones-bibliotecario ul {
+  list-style: none;
+  padding: 0;
+}
+
+.opciones-bibliotecario li {
+  margin: 10px 0;
+}
+
+.opciones-bibliotecario a {
+  display: block;
+  background-color: #f4f4f4;
+  padding: 12px;
+  border-radius: 6px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.opciones-bibliotecario a:hover {
+  background-color: #d6eaff;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 12px;
+  background-color: #004d7a;
+  color: white;
+  font-size: 0.9em;
+  margin-top: auto;
+}

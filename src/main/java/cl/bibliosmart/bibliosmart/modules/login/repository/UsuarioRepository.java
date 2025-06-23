@@ -8,5 +8,6 @@ import cl.bibliosmart.bibliosmart.modules.login.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
     Optional<Usuario> findByCorreo(String correo);
+    Optional<Usuario> findByRut(String rut);
     
 }
