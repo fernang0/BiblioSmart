@@ -1,7 +1,10 @@
 package cl.bibliosmart.bibliosmart.modules.catalogo.controller;
 
+import cl.bibliosmart.bibliosmart.modules.catalogo.model.Ejemplar;
 import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
 import cl.bibliosmart.bibliosmart.modules.catalogo.service.LibroService;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -41,8 +44,12 @@ public class CatalogoController {
         if (libro == null) {
             return "redirect:/catalogo"; // Redirige si no existe
         }
+        int cantidadEjemplares = libroService.contarEjemplarPorLibroId(id);
+        List<Ejemplar> ejemplares = libroService.listarEjemplaresPorLibro(id);
 
         model.addAttribute("libro", libro);
+        model.addAttribute("cantidadEjemplares", cantidadEjemplares);
+        model.addAttribute("ejemplares", ejemplares);
         return "libro"; // nombre del archivo HTML sin extensión
     }
 

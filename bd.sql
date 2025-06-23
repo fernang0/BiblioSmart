@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS biblioteca_mvp;
+USE biblioteca_mvp;
+
 CREATE TABLE usuario (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     rut VARCHAR(20),
@@ -24,6 +27,119 @@ CREATE TABLE libro (
     motivo_baja VARCHAR(255),
     fecha_baja DATE
 );
+
+-- Tabla POLITICA_PRESTAMO
+CREATE TABLE politica_prestamo (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    dias_maximos INT NOT NULL,
+    dias_tolerancia INT NOT NULL,
+    dias_renovaciones INT NOT NULL,
+    dias_por_dia INT NOT NULL
+);
+
+-- Tabla EJEMPLAR
+CREATE TABLE ejemplar (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    codigo_ejemplar VARCHAR(50) NOT NULL UNIQUE,
+    estado ENUM('DISPONIBLE','PRESTADO','RESERVADO','DANADO','EXTRAVIADO','BAJA') NOT NULL,
+    ubicacion VARCHAR(255),
+    libro_id BIGINT NOT NULL,
+    FOREIGN KEY (libro_id) REFERENCES libro(id)
+);
+
+-- Tabla PRESTAMO
+CREATE TABLE prestamo (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    ejemplar_id BIGINT NOT NULL,
+    usuario_id BIGINT NOT NULL,
+    fecha_prestamo DATE NOT NULL,
+    fecha_limite DATE NOT NULL,
+    fecha_devolucion DATE,
+    dias_atraso INT,
+    multa INT,
+    politica_prestamo_id BIGINT NOT NULL,
+    FOREIGN KEY (ejemplar_id) REFERENCES ejemplar(id),
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+    FOREIGN KEY (politica_prestamo_id) REFERENCES politica_prestamo(id)
+);
+
+-- Tabla RESERVA
+CREATE TABLE reserva (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    ejemplar_id BIGINT NOT NULL,
+    usuario_id BIGINT NOT NULL,
+    fecha_reserva DATE NOT NULL,
+    estado ENUM('ACTIVA','EXPIRADA','NOTIFICADA') NOT NULL,
+    FOREIGN KEY (ejemplar_id) REFERENCES ejemplar(id),
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+);
+
+-- Tabla NOTIFICACION
+CREATE TABLE notificacion (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    destinatario_id BIGINT NOT NULL,
+    mensaje TEXT NOT NULL,
+    tipo ENUM('RECORDATORIO','ATRASO','DISPONIBILIDAD') NOT NULL,
+    fecha_envio DATE NOT NULL,
+    FOREIGN KEY (destinatario_id) REFERENCES usuario(id)
+);
+
+-- Tabla REPORTE
+CREATE TABLE reporte (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    tipo ENUM('LIBROS_MAS_PRESTADOS','USUARIOS_ACTIVOS','USUARIOS_BLOQUEADOS','PRESTAMOS_EN_CURSO') NOT NULL,
+    fecha_generacion DATE NOT NULL,
+    generado_por_id BIGINT NOT NULL,
+    FOREIGN KEY (generado_por_id) REFERENCES usuario(id)
+);
+
+--Poblado
+
+-- Inserción de USUARIOS (contraseñas en texto plano)
+INSERT INTO usuario (rut, nombre_completo, correo, contrasena, tipo_usuario, rol, estado_cuenta, fecha_registro, deuda)
+VALUES 
+('12345678-9', 'Juan Pérez', 'juan@example.com', 'juan123', 'ALUMNO', 'LECTOR', 'ACTIVO', NOW(), 0),
+('98765432-1', 'Ana Torres', 'ana@example.com', 'ana456', 'PROFESOR', 'BIBLIOTECARIO', 'ACTIVO', NOW(), 500),
+('19283746-5', 'Carlos Soto', 'carlos@example.com', 'admin789', 'ADMINISTRADOR', 'ADMINISTRADOR', 'ACTIVO', NOW(), 0);
+
+-- Inserción de POLÍTICAS DE PRÉSTAMO
+INSERT INTO politica_prestamo (dias_maximos, dias_tolerancia, dias_renovaciones, dias_por_dia)
+VALUES 
+(14, 3, 2, 7),
+(7, 2, 1, 4);
+
+-- Inserción de EJEMPLARES
+INSERT INTO ejemplar (codigo_ejemplar, estado, ubicacion, libro_id)
+VALUES 
+('EJEMP001', 'DISPONIBLE', 'Estante A1', 1),
+('EJEMP002', 'PRESTADO', 'Estante B2', 1),
+('EJEMP003', 'RESERVADO', 'Estante C3', 2);
+
+-- Inserción de PRÉSTAMOS
+INSERT INTO prestamo (ejemplar_id, usuario_id, fecha_prestamo, fecha_limite, fecha_devolucion, dias_atraso, multa, politica_prestamo_id)
+VALUES 
+(2, 1, '2025-06-01', '2025-06-15', '2025-06-17', 2, 1000, 1);
+
+-- Inserción de RESERVAS
+INSERT INTO reserva (ejemplar_id, usuario_id, fecha_reserva, estado)
+VALUES 
+(3, 1, '2025-06-20', 'ACTIVA');
+
+-- Inserción de NOTIFICACIONES
+INSERT INTO notificacion (destinatario_id, mensaje, tipo, fecha_envio)
+VALUES 
+(1, 'Tu reserva sigue activa. Retira el ejemplar en 24 horas.', 'RECORDATORIO', '2025-06-21'),
+(2, 'Tienes un atraso en la devolución del ejemplar.', 'ATRASO', '2025-06-18');
+
+-- Inserción de REPORTES
+INSERT INTO reporte (tipo, fecha_generacion, generado_por_id)
+VALUES 
+('LIBROS_MAS_PRESTADOS', '2025-06-22', 3),
+('USUARIOS_BLOQUEADOS', '2025-06-22', 3);
+
+
+--Poblado completo de libros
+
 INSERT INTO libro (titulo, autores, editorial, anio, descripcion, isbn, categoria, activo, motivo_baja, fecha_baja) VALUES
 ('Cien Años de Soledad', 'Gabriel García Márquez', 'Sudamericana', 1967,
  'Una obra maestra del realismo mágico que narra la historia multigeneracional de la familia Buendía en el pueblo ficticio de Macondo. La novela explora temas como la soledad, el destino y el tiempo, entrelazando lo fantástico y lo real de manera magistral.', 

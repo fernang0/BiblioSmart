@@ -45,6 +45,25 @@
         <p><strong>Categoría:</strong> <span th:text="${libro.categoria}">Categoría</span></p>
         <p><strong>Descripción:</strong></p>
         <p th:text="${libro.descripcion}">Descripción del libro</p>
+      <div th:if="${#lists.isEmpty(ejemplares) == false}">
+        <h3 style="margin-top: 1.5rem;">Ejemplares disponibles <span th:text="${cantidadEjemplares}">0</span></h3>
+        <table class="tabla-ejemplares">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Estado</th>
+              <th>Ubicación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="ejemplar : ${ejemplares}">
+              <td th:text="${ejemplar.codigoEjemplar}">Código</td>
+              <td th:text="${ejemplar.estado}">Estado</td>
+              <td th:text="${ejemplar.ubicacion}">Ubicación</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
         <br />
         <a href="/catalogo">← Volver al catálogo</a>
       </div>

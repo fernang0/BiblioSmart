@@ -1,9 +1,11 @@
 package cl.bibliosmart.bibliosmart.modules.catalogo.service;
 
+import cl.bibliosmart.bibliosmart.modules.catalogo.model.Ejemplar;
 import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
+import cl.bibliosmart.bibliosmart.modules.catalogo.repository.EjemplarRepository;
 import cl.bibliosmart.bibliosmart.modules.catalogo.repository.LibroRepository;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +17,9 @@ public class LibroService {
 
     @Autowired
     private LibroRepository libroRepository;
+
+    @Autowired
+    private EjemplarRepository ejemplarRepository;
 
     private static final int PAGE_SIZE = 40;
 
@@ -37,5 +42,10 @@ public class LibroService {
     public Libro buscarPorId(Long id){
         return libroRepository.getById(id);
     }
-
+    public int contarEjemplarPorLibroId(Long libroId){
+        return ejemplarRepository.countByLibroId(libroId);
+    }
+    public List<Ejemplar> listarEjemplaresPorLibro(Long libroId){
+        return ejemplarRepository.findByLibroId(libroId);
+    }
 }

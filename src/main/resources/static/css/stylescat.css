@@ -135,6 +135,45 @@ form button:hover {
   font-size: 0.95em;
 }
 
+.tabla-ejemplares {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  font-size: 1em;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
+}
+
+.tabla-ejemplares thead {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tabla-ejemplares th,
+.tabla-ejemplares td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-ejemplares tbody tr {
+  transition: background-color 0.2s;
+}
+
+.tabla-ejemplares tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tabla-ejemplares tbody tr:hover {
+  background-color: #e0f1ff;
+  cursor: default;
+}
+
 /* Paginación */
 .paginacion {
   margin-top: 30px;
@@ -249,7 +288,7 @@ footer {
 .libro-detalle {
   display: flex;
   flex-wrap: wrap;
-  max-width: 900px;
+  max-width: 1200px;
   gap: 2rem;
   background-color: #fff;
   border-radius: 12px;
@@ -258,8 +297,12 @@ footer {
 }
 
 .libro-detalle img {
-  max-width: 250px;
+  width: 250px;
+  height: 450px;
+  object-fit: cover;
+  object-position: top;
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .info-detalle {
