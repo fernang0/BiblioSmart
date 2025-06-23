@@ -23,6 +23,7 @@ public class LibroService {
 
     private static final int PAGE_SIZE = 40;
 
+    @SuppressWarnings("null")
     public Page<Libro> listarLibros(String q, String categoria, int pagina) {
         PageRequest pageRequest = PageRequest.of(pagina - 1, PAGE_SIZE);
 
@@ -39,6 +40,7 @@ public class LibroService {
             return libroRepository.buscarPorQYCategoria(q.trim(), categoria.trim(), pageRequest);
         }
     }
+    @SuppressWarnings("deprecation")
     public Libro buscarPorId(Long id){
         return libroRepository.getById(id);
     }

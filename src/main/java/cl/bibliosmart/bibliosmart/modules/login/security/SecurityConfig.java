@@ -44,11 +44,13 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @SuppressWarnings("deprecation")
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance(); // Contraseñas en texto plano
     }
 
+    @SuppressWarnings("removal")
     @Bean
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {
         return http
