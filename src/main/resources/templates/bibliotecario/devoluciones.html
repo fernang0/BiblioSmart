@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrar Devolución</title>
+  <link rel="stylesheet" th:href="@{/css/prestamo-panel.css}" />
+</head>
+<body>
+  <header>
+    <h1>Registrar Devolución</h1>
+    <nav>
+      <a href="/bibliotecario/panel">Volver al Panel</a>
+      <form th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" style="all: unset; cursor: pointer;">Cerrar Sesión</button>
+      </form>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="margin-bottom: 10px;">Nueva Devolución</h2>
+
+    <form th:action="@{/bibliotecario/devoluciones/registrar}" method="post" class="formulario-linea">
+      <label for="ejemplarId">Ejemplar:</label>
+      <input type="text" id="ejemplarId" name="ejemplarId" required />
+
+      <label for="rutUsuario">RUT:</label>
+      <input type="text" id="rutUsuario" name="rutUsuario" required placeholder="12345678-9" />
+
+      <button type="submit">Registrar Devolución</button>
+    </form>
+
+    <div th:if="${msgExito}" class="mensaje-exito" th:text="${msgExito}"></div>
+    <div th:if="${msgError}" class="mensaje-error" th:text="${msgError}"></div>
+    <div th:if="${prestamo != null}">
+    <p><strong>Libro:</strong> <span th:text="${prestamo.ejemplar.libro.titulo}">Título del libro</span></p>
+    <p><strong>Fecha Préstamo:</strong> <span th:text="${prestamo.fechaPrestamo}">2025-06-01</span></p>
+    <p><strong>Fecha Límite:</strong> <span th:text="${prestamo.fechaLimite}">2025-06-10</span></p>
+    <p><strong>Fecha Devolución:</strong> <span th:text="${prestamo.fechaDevolucion}">2025-06-12</span></p>
+    <p><strong>Días de Atraso:</strong> <span th:text="${prestamo.diasAtraso}">2</span></p>
+
+    <!-- Mostrar multa solo si es mayor que 0 -->
+    <p th:if="${prestamo.multa != null and prestamo.multa > 0}">
+    <strong>Multa:</strong>
+    <span th:text="${#numbers.formatDecimal(prestamo.multa, 0, 0)}">0</span> pesos
+    </p>
+
+
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
+  </footer>
+</body>
+</html>

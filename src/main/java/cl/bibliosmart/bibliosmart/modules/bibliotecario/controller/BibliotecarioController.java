@@ -2,6 +2,7 @@ package cl.bibliosmart.bibliosmart.modules.bibliotecario.controller;
 
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.service.PrestamoService;
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.model.PoliticaPrestamo;
+import cl.bibliosmart.bibliosmart.modules.bibliotecario.model.Prestamo;
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.service.PoliticaPrestamoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class BibliotecarioController {
         model.addAttribute("politicas", politicas);
         return "bibliotecario/nuevo-prestamo";
     }
+
     @PostMapping("/prestamos/guardar")
     public String registrarPrestamo(
             @RequestParam("rutUsuario") String rutUsuario,
@@ -46,11 +48,31 @@ public class BibliotecarioController {
             model.addAttribute("msgError", "Error al registrar el préstamo: " + e.getMessage());
         }
 
-        // Cargar nuevamente las políticas para el formulario
         List<PoliticaPrestamo> politicas = politicaPrestamoService.obtenerTodas();
         model.addAttribute("politicas", politicas);
 
-        // Volver a la misma página
         return "bibliotecario/nuevo-prestamo";
+    }
+
+    @GetMapping("/devoluciones")
+    public String devolucionesBibliotecario() {
+        return "bibliotecario/devoluciones";
+    }
+
+    @PostMapping("/devoluciones/registrar")
+    public String registrarDevolucion(
+        @RequestParam("ejemplarId") String ejemplarId,
+        @RequestParam("rutUsuario") String rutUsuario,
+        Model model
+    ) {
+        try {
+            Prestamo prestamo = prestamoService.registrarDevolucion(ejemplarId, rutUsuario);
+            model.addAttribute("prestamo", prestamo);
+            model.addAttribute("msgExito", "Devolución registrada correctamente.");
+        } catch (Exception e) {
+            model.addAttribute("msgError", "Error: " + e.getMessage());
+        }
+
+        return "bibliotecario/devoluciones";
     }
 }
