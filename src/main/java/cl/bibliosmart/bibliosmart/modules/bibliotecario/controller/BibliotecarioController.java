@@ -1,6 +1,8 @@
 package cl.bibliosmart.bibliosmart.modules.bibliotecario.controller;
 
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.service.PrestamoService;
+import cl.bibliosmart.bibliosmart.modules.login.model.Usuario;
+import cl.bibliosmart.bibliosmart.modules.login.service.UsuarioService;
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.model.PoliticaPrestamo;
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.model.Prestamo;
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.service.PoliticaPrestamoService;
@@ -21,6 +23,9 @@ public class BibliotecarioController {
 
     @Autowired
     private PoliticaPrestamoService politicaPrestamoService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/panel")
     public String panelBibliotecario() {
@@ -54,6 +59,8 @@ public class BibliotecarioController {
         return "bibliotecario/nuevo-prestamo";
     }
 
+
+
     @GetMapping("/devoluciones")
     public String devolucionesBibliotecario() {
         return "bibliotecario/devoluciones";
@@ -74,5 +81,34 @@ public class BibliotecarioController {
         }
 
         return "bibliotecario/devoluciones";
+    }
+    @GetMapping("/multas")
+    public String pagoMultas(){
+        return "bibliotecario/multas";
+    }
+
+    @PostMapping("/multas/buscar")
+    public String buscarMultaPorRUT(
+        @RequestParam("rutUsuario") String rutUsuario,
+        Model model
+        ){
+        try {
+            Usuario usuario = usuarioService.buscarPorRut(rutUsuario).get();
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("msgExito", "Usuario encontrado");
+        } catch (Exception e) {
+            model.addAttribute("msgError", "Error: " + e.getMessage());
+        }
+        return "bibliotecario/multas";
+    }
+    @PostMapping("/multas/eliminar-deuda")
+    public String eliminarDeuda(@RequestParam("rutUsuario") String rutUsuario, Model model) {
+        try {
+            usuarioService.eliminarDeuda(rutUsuario); // Lógica que tú defines
+            model.addAttribute("msgExito", "La deuda del usuario fue eliminada exitosamente.");
+        } catch (Exception e) {
+            model.addAttribute("msgError", "No se pudo eliminar la deuda: " + e.getMessage());
+        }
+        return "bibliotecario/multas";
     }
 }

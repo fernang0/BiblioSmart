@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pago de multas</title>
+  <link rel="stylesheet" th:href="@{/css/prestamo-panel.css}" />
+</head>
+<body>
+  <header>
+    <h1>Registrar Pago de Multas</h1>
+    <nav>
+      <a href="/bibliotecario/panel">Volver al Panel</a>
+      <form th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" style="all: unset; cursor: pointer;">Cerrar Sesión</button>
+      </form>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="margin-bottom: 10px;">Pago de multas</h2>
+
+    <form th:action="@{/bibliotecario/multas/buscar}" method="post" class="formulario-linea">
+      <label for="rutUsuario">RUT:</label>
+      <input type="text" id="rutUsuario" name="rutUsuario" required placeholder="12345678-9" />
+      <button type="submit">Buscar multas</button>
+    </form>
+
+    <div th:if="${msgExito}" class="mensaje-exito" th:text="${msgExito}"></div>
+    <div th:if="${msgError}" class="mensaje-error" th:text="${msgError}"></div>
+    <div th:if="${usuario != null}">
+        <p><strong>RUT:</strong> <span th:text="${usuario.rut}">RUT</span></p>
+        <p><strong>Nombre:</strong> <span th:text="${usuario.nombreCompleto}">Nombre completo</span></p>
+        <p><strong>Deuda:</strong> <span th:text="${usuario.deuda}">Deuda</span></p>
+        <form th:action="@{/bibliotecario/multas/eliminar-deuda}" method="post" style="margin-top: 10px;">
+            <input type="hidden" name="rutUsuario" th:value="${usuario.rut}" />
+            <button type="submit" style="padding: 6px 12px; background-color: #d9534f; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Eliminar Deuda
+            </button>
+  </form>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
+  </footer>
+</body>
+</html>

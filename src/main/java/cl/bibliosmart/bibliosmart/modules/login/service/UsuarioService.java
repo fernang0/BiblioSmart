@@ -17,4 +17,18 @@ public class UsuarioService {
     public Optional<Usuario> buscarPorCorreo(String correo) {
         return usuarioRepository.findByCorreo(correo);
     }
+
+    public Optional<Usuario> buscarPorRut(String rut) {
+        return usuarioRepository.findByRut(rut);
+    }
+    public void eliminarDeuda(String rut) {
+        Optional<Usuario> optUsuario = usuarioRepository.findByRut(rut);
+        if (optUsuario.isPresent()) {
+            Usuario usuario = optUsuario.get();
+            usuario.setDeuda(0);
+            usuarioRepository.save(usuario);
+        } else {
+            throw new RuntimeException("Usuario no encontrado con RUT: " + rut);
+        }
+    }
 }
