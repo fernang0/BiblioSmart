@@ -1,6 +1,9 @@
 package cl.bibliosmart.bibliosmart.modules.catalogo.repository;
 
 import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
+
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +36,5 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
            "AND LOWER(l.categoria) = LOWER(:categoria) " +
            "AND l.activo = true")
     Page<Libro> buscarPorQYCategoria(@Param("q") String q, @Param("categoria") String categoria, Pageable pageable);
+    Optional<Libro> findByIsbn(String isbn);
 }

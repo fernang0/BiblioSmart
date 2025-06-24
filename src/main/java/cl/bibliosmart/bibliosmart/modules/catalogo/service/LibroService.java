@@ -6,6 +6,7 @@ import cl.bibliosmart.bibliosmart.modules.catalogo.repository.EjemplarRepository
 import cl.bibliosmart.bibliosmart.modules.catalogo.repository.LibroRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -49,5 +50,11 @@ public class LibroService {
     }
     public List<Ejemplar> listarEjemplaresPorLibro(Long libroId){
         return ejemplarRepository.findByLibroId(libroId);
+    }
+    public Optional<Libro> buscarPorIsbn(String isbn){
+        return libroRepository.findByIsbn(isbn);
+    }
+    public void actualizarLibro(Libro libro){
+        libroRepository.save(libro);
     }
 }

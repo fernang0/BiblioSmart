@@ -61,7 +61,6 @@ public class Usuario {
     private Integer deuda;
 
     public Usuario orElseThrow(Object object) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
     }
 

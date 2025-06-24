@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar Libro</title>
+  <link rel="stylesheet" th:href="@{/css/prestamo-panel.css}" />
+</head>
+<body>
+  <header>
+    <h1>Editar Libro</h1>
+    <nav>
+      <a href="/bibliotecario/panel">Volver al Panel</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Buscar por ISBN</h2>
+    <form th:action="@{/bibliotecario/libros/buscar}" method="post" class="formulario-linea">
+      <label for="isbn">ISBN:</label>
+      <input type="text" id="isbn" name="isbn" required />
+      <button type="submit">Buscar</button>
+    </form>
+
+    <div th:if="${libro != null}">
+      <h3>Editar Información</h3>
+      <form th:action="@{/bibliotecario/libros/actualizar}" method="post" class="formulario-editar">
+        <input type="hidden" name="id" th:value="${libro.id}" />
+
+        <label>Título:</label>
+        <input type="text" name="titulo" th:value="${libro.titulo}" required />
+
+        <label>Autor(es):</label>
+        <input type="text" name="autores" th:value="${libro.autores}" required />
+
+        <label>Editorial:</label>
+        <input type="text" name="editorial" th:value="${libro.editorial}" />
+
+        <label>Año:</label>
+        <input type="number" name="anio" th:value="${libro.anio}" />
+
+        <label>Descripción:</label>
+        <textarea name="descripcion" rows="4" th:text="${libro.descripcion}"></textarea>
+
+        <label>Categoría:</label>
+        <input type="text" name="categoria" th:value="${libro.categoria}" />
+
+        <label>ISBN:</label>
+        <input type="text" name="isbn" th:value="${libro.isbn}" readonly />
+
+        <button type="submit">Guardar Cambios</button>
+      </form>
+    </div>
+
+    <div th:if="${msgError}" class="mensaje-error" th:text="${msgError}"></div>
+    <div th:if="${msgExito}" class="mensaje-exito" th:text="${msgExito}"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
+  </footer>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package cl.bibliosmart.bibliosmart.modules.bibliotecario.controller;
 
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.service.PrestamoService;
+import cl.bibliosmart.bibliosmart.modules.catalogo.model.Libro;
+import cl.bibliosmart.bibliosmart.modules.catalogo.service.LibroService;
 import cl.bibliosmart.bibliosmart.modules.login.model.Usuario;
 import cl.bibliosmart.bibliosmart.modules.login.service.UsuarioService;
 import cl.bibliosmart.bibliosmart.modules.bibliotecario.model.PoliticaPrestamo;
@@ -11,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/bibliotecario")
@@ -26,6 +30,9 @@ public class BibliotecarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private LibroService libroService;
 
     @GetMapping("/panel")
     public String panelBibliotecario() {
@@ -110,5 +117,26 @@ public class BibliotecarioController {
             model.addAttribute("msgError", "No se pudo eliminar la deuda: " + e.getMessage());
         }
         return "bibliotecario/multas";
+    }
+    @GetMapping("/editar-libro")
+    public String editarLibro(){
+        return "bibliotecario/editar-libro.html";
+    }
+    @PostMapping("/libros/buscar")
+    public String buscarLibroPorIsbn(@RequestParam("isbn") String isbn, Model model) {
+        Optional<Libro> libroOpt = libroService.buscarPorIsbn(isbn);
+        if (libroOpt.isPresent()) {
+            model.addAttribute("libro", libroOpt.get());
+        } else {
+            model.addAttribute("msgError", "No se encontró un libro con el ISBN ingresado.");
+        }
+        return "bibliotecario/editar-libro";
+    }
+
+    @PostMapping("/libros/actualizar")
+    public String actualizarLibro(@ModelAttribute Libro libro, RedirectAttributes redirect) {
+        libroService.actualizarLibro(libro);
+        redirect.addFlashAttribute("msgExito", "Libro actualizado correctamente.");
+        return "redirect:/bibliotecario/editar-libro";
     }
 }
