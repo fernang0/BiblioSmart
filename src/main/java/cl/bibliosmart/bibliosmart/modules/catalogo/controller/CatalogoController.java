@@ -52,7 +52,10 @@ public class CatalogoController {
         model.addAttribute("ejemplares", ejemplares);
         return "libro"; // nombre del archivo HTML sin extensión
     }
-
+    @GetMapping("/contacto")
+    public String getContacto() {
+        return "contacto";
+    }
     
 
 }

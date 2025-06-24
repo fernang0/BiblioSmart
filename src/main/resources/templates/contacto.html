@@ -32,52 +32,10 @@
 
         </div>
   </header>
-
-  <main class="catalogo">
-    <h2>Catálogo de Libros</h2>
-
-    <form method="get" action="/catalogo">
-      <label for="q">Buscar por título, autor o ISBN:</label>
-      <input type="text" id="q" name="q" th:value="${q}" placeholder="Ejemplo: Cien Años, García, 9781234567890" />
-      <button type="submit">Buscar</button>
-    </form>
-
-    <div class="libros">
-      <div class="libro" th:each="libro : ${libros}">
-        <a th:href="@{/catalogo/libro(id=${libro.id})}" style="text-decoration: none; color: inherit;">
-          <img th:src="@{'/covers/' + ${libro.isbn} + '-L.jpg'}"
-              th:alt="${libro.titulo}"
-              onerror="this.onerror=null; this.src='/covers/default.png';" />
-          <div class="info">
-            <h3 th:text="${libro.titulo}">Título del Libro</h3>
-            <p th:text="${libro.autores}">Autor</p>
-            <p><small th:text="${libro.anio}">Año</small></p>
-          </div>
-        </a>
-      </div>
-    </div>
-
-
-    <div class="paginacion">
-      <ul>
-        <li th:if="${pagina > 1}">
-          <a th:href="@{/catalogo(pagina=${pagina - 1}, q=${q})}">Anterior</a>
-        </li>
-        <li th:each="i : ${#numbers.sequence(1, totalPaginas)}"
-            th:classappend="${i == pagina} ? 'activo'">
-          <a th:href="@{/catalogo(pagina=${i}, q=${q})}"
-             th:text="${i}">1</a>
-        </li>
-        <li th:if="${pagina < totalPaginas}">
-          <a th:href="@{/catalogo(pagina=${pagina + 1}, q=${q})}">Siguiente</a>
-        </li>
-      </ul>
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Biblioteca | contacto@biblioteca.cl</p>
-  </footer>
+<main class="catalogo">
+  <h2>Contacto</h2>
+  <h3>Comuniquese con el administrador por correco electronico: admin@biblioteca.cl</h3>
+</main>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const linkCategoria = document.querySelector('.dropdown > a');
